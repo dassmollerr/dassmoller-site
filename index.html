@@ -73,6 +73,88 @@
     h1{margin:0 0 10px; font-size:38px; line-height:1.15; letter-spacing:-.3px; position:relative}
     .lead{margin:0 0 18px; color:var(--muted); max-width:72ch; position:relative}
     .btns{display:flex; gap:10px; flex-wrap:wrap; position:relative}
+    <div class="viz card">
+  <div class="vizHead">
+    <div>
+      <h2>Termal iletim prensibi</h2>
+      <p>Yerden ısıtma borusundan şap yüzeyine ısı transferini hızlandırmayı hedefler.</p>
+    </div>
+    <div class="legend">
+      <span><i class="l1"></i> Isı kaynağı</span>
+      <span><i class="l2"></i> Şap katmanı</span>
+      <span><i class="l3"></i> Yüzey</span>
+    </div>
+  </div>
+
+  <!-- SVG: Şap kesiti + ısı dalgaları -->
+  <svg viewBox="0 0 920 260" class="vizSvg" role="img" aria-label="Screed cross-section with heat waves">
+    <!-- zemin -->
+    <defs>
+      <linearGradient id="gFloor" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="rgba(255,255,255,.06)"/>
+        <stop offset="1" stop-color="rgba(255,255,255,.02)"/>
+      </linearGradient>
+
+      <linearGradient id="gScreed" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="rgba(255,255,255,.10)"/>
+        <stop offset="1" stop-color="rgba(255,255,255,.04)"/>
+      </linearGradient>
+
+      <radialGradient id="gHeat" cx="50%" cy="75%" r="60%">
+        <stop offset="0" stop-color="rgba(255,32,1,.35)"/>
+        <stop offset="1" stop-color="rgba(255,32,1,0)"/>
+      </radialGradient>
+
+      <filter id="blur">
+        <feGaussianBlur stdDeviation="2.2"/>
+      </filter>
+    </defs>
+
+    <!-- Panel arka glow -->
+    <rect x="0" y="0" width="920" height="260" rx="18" fill="rgba(255,255,255,.02)"/>
+    <ellipse cx="460" cy="210" rx="420" ry="170" fill="url(#gHeat)" filter="url(#blur)"/>
+
+    <!-- Şap katmanı -->
+    <rect x="70" y="70" width="780" height="125" rx="16" fill="url(#gScreed)" stroke="rgba(255,255,255,.14)"/>
+
+    <!-- Üst kaplama/yüzey -->
+    <rect x="70" y="52" width="780" height="26" rx="13" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.10)"/>
+
+    <!-- Isıtma borusu -->
+    <g>
+      <circle cx="300" cy="165" r="26" fill="rgba(255,32,1,.22)" stroke="rgba(255,32,1,.55)"/>
+      <circle cx="300" cy="165" r="14" fill="rgba(0,0,0,.25)" stroke="rgba(255,255,255,.10)"/>
+      <circle cx="620" cy="165" r="26" fill="rgba(255,32,1,.22)" stroke="rgba(255,32,1,.55)"/>
+      <circle cx="620" cy="165" r="14" fill="rgba(0,0,0,.25)" stroke="rgba(255,255,255,.10)"/>
+      <path d="M326 165 C410 165, 510 165, 594 165" fill="none" stroke="rgba(255,32,1,.40)" stroke-width="10" stroke-linecap="round"/>
+    </g>
+
+    <!-- Termal dalgalar -->
+    <g stroke="rgba(255,32,1,.55)" stroke-width="3" fill="none" stroke-linecap="round" opacity=".95">
+      <path d="M240 150 C250 125, 275 115, 300 95 C325 115, 350 125, 360 150" />
+      <path d="M270 150 C280 132, 292 125, 300 112 C308 125, 320 132, 330 150" opacity=".85"/>
+      <path d="M560 150 C570 125, 595 115, 620 95 C645 115, 670 125, 680 150" />
+      <path d="M590 150 C600 132, 612 125, 620 112 C628 125, 640 132, 650 150" opacity=".85"/>
+    </g>
+
+    <!-- Oklar (ısı yönü) -->
+    <g stroke="rgba(255,255,255,.45)" stroke-width="2" fill="none" opacity=".9">
+      <path d="M460 190 L460 85" />
+      <path d="M460 85 L452 95" />
+      <path d="M460 85 L468 95" />
+    </g>
+
+    <!-- Etiketler -->
+    <g font-family="system-ui,Segoe UI,Arial" font-size="12" fill="rgba(255,255,255,.78)">
+      <text x="78" y="44">Yüzey</text>
+      <text x="78" y="92">Şap katmanı</text>
+      <text x="78" y="220">Isı transferi (yukarı yön)</text>
+      <text x="280" y="170">Boru</text>
+      <text x="600" y="170">Boru</text>
+    </g>
+  </svg>
+</div>
+
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
       padding:11px 14px; border-radius:12px;
